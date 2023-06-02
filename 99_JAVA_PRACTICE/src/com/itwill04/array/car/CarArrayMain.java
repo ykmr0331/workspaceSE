@@ -58,12 +58,19 @@ public class CarArrayMain {
 			}		
 		}
 		System.out.println();
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
-
 		
+		System.out.println("한대 들어오고나서 늘어난 주차대수");
+		Car.headerPrint();
+		for (int i = 0; i < carArray.length; i++) {
+			if(carArray[i] != null) {
+			carArray[i].print();
+			}
+		}
 		
+		System.out.println();
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ			
 		System.out.println("5.차량번호 7789번  차한대 정보출력");
-		
+		Car.headerPrint();
 		for (int i = 0; i < carArray.length; i++) {
 			if((carArray[i].getNo() == "7789")|| (carArray[i] != null)) {
 				carArray[i].print();
@@ -71,12 +78,32 @@ public class CarArrayMain {
 			}
 		}
 		System.out.println();
-		
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
+	
 		System.out.println("6.입차시간 10시이후 차량여러대 찾아서 정보출력");
-		
+		Car.headerPrint();
+		for (int i = 0; i < carArray.length; i++) {	
+			if((carArray[i] != null) && (carArray[i].getInTime() >= 10)) {
+				carArray[i].print();
+				
+			}
+		}
+		System.out.println();
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ			
 		System.out.println("7.2389번차량 12시 출차");
+		Car.headerPrint();
+		for (int i = 0; i < carArray.length; i++) {
+			if((carArray[i] != null) ||(carArray[i].getNo()).equals("2389")) {
+				carArray[i].setOutTime(12);
+				carArray[i].calculateFee();
+				carArray[i].print();
+				carArray[i] =null;
+				break;
+			}
+		}
+
+		System.out.println();
 		/*
-		 * 1. 2389번차량찾기
 		 * 2. 출차(출차시간12시대입,요금계산)
 		 * 3. 영수증출력
 		 * 4. 2389번차량 주차장에서 차량삭제(null을대입)
@@ -84,12 +111,27 @@ public class CarArrayMain {
 		 */
 		
 		
-		
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
 		System.out.println("99. 2389번차량 출차후전체 차량출력");
+		Car.headerPrint();
+		for (int i = 0; i < carArray.length; i++) {
+			if(carArray[i] != null) {
+			carArray[i].print();
+			}
+		}
+		
+		
+		//Car.headerPrint();
+		//for (int i = 0; i < carArray.length; i++) {
+		//	if(carArray[i] != null) {
+		//	carArray[i].print();
+		
+			}
 		
 		
 		
-	}
+		
+	
 
 }
 
