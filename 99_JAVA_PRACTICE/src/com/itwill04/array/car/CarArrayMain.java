@@ -1,5 +1,7 @@
 package com.itwill04.array.car;
 
+import java.util.Iterator;
+
 public class CarArrayMain {
 
 	public static void main(String[] args) {
@@ -28,7 +30,7 @@ public class CarArrayMain {
 		System.out.println();
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 		System.out.println("2.전체주차구획수");
-		System.out.println("2.전체주차구획수");
+
 		System.out.println("전체 주차구획수 >>" +carArray.length+"자리");
 		System.out.println();
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ			
@@ -62,6 +64,13 @@ public class CarArrayMain {
 		
 		System.out.println("5.차량번호 7789번  차한대 정보출력");
 		
+		for (int i = 0; i < carArray.length; i++) {
+			if((carArray[i].getNo() == "7789")|| (carArray[i] != null)) {
+				carArray[i].print();
+				break;
+			}
+		}
+		System.out.println();
 		
 		System.out.println("6.입차시간 10시이후 차량여러대 찾아서 정보출력");
 		
