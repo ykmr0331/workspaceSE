@@ -1,6 +1,6 @@
 package com.itwill04.array.car;
 
-import java.util.Iterator;
+
 
 public class CarArrayMain {
 
@@ -56,23 +56,13 @@ public class CarArrayMain {
 
 				break;
 			}		
-		}
-		System.out.println();
-		
-		System.out.println("한대 들어오고나서 늘어난 주차대수");
-		Car.headerPrint();
-		for (int i = 0; i < carArray.length; i++) {
-			if(carArray[i] != null) {
-			carArray[i].print();
-			}
-		}
-		
+		}	
 		System.out.println();
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ			
 		System.out.println("5.차량번호 7789번  차한대 정보출력");
 		Car.headerPrint();
 		for (int i = 0; i < carArray.length; i++) {
-			if((carArray[i].getNo() == "7789")|| (carArray[i] != null)) {
+			if((carArray[i] != null) &&((carArray[i].getNo()).equals("7789"))) {
 				carArray[i].print();
 				break;
 			}
