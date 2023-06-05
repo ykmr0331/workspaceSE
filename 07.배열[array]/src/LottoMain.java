@@ -12,15 +12,22 @@ public class LottoMain {
 		/* -Quiz중복체크!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 		 * 버블
 		 */
-	
-		for(int i =0; i < lottoNumber.length; i++) {
-			lottoNumber[i] = (int)( Math.random() * 45) + 1;
-			/*for (int k = 0; k < lottoNumber.length; k++) {
-				if(lottoNumber[i] == lottoNumber[k]) { // 이게 배열안에 있는 번호면  다시 하도록
-					
-				}*/
-			
-			}
+		 for (int i = 0; i < lottoNumber.length; i++) {
+	            boolean isDuplicate; // 중복여부가 true인지 false인지
+	            do { // do-while문 시작
+	                isDuplicate = false; //중복여부 값을 false로 초기화
+	                lottoNumber[i] = (int) (Math.random() * 45) + 1;
+
+	                // 중복 체크
+	                for (int j = 0; j < i; j++) {//i가 j보다 커야 앞에 이미 적힌 로또들이 지금 적은 로또번호랑 같은지 비교할 수 있다.
+	                    if (lottoNumber[i] == lottoNumber[j]) {
+	                        isDuplicate = true;
+	                        break;
+	                    }
+	                }
+	            } while (isDuplicate);
+	        }
+
 		/*
 		 * 번호출력
 		 */

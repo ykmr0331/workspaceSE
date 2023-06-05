@@ -102,11 +102,10 @@ public class CarArrayMain {
 		
 	
 		for (Car car : carArray) {
-			if(car != null) {
-				if(car.getNo().equals("7789")) {
+			if((car != null)&& (car.getNo().equals("7789"))) { 
 					car.print();
 					break;
-				}
+				
 			}
 			
 		}
@@ -128,10 +127,8 @@ public class CarArrayMain {
 		
 		
 		for ( Car car : carArray) {
-			if(car != null) {
-				if(car.getInTime() >10) {
-					car.print();
-				}
+			if((car != null)&&(car.getInTime()>10)) {
+				car.print();
 			}
 		}
 		
