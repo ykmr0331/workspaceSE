@@ -1,4 +1,5 @@
-package com.itwill03.포함;
+package com.itwill03.포함.배열포함;
+
 
 
 
@@ -16,11 +17,12 @@ public class BookLibraryMain {
 		/*
 		 * 책객체생성
 		 */
-		Book[] books = new Book[3];
+		Book[] book = new Book[3];
 		Book book1 = new Book(1, "반지의제왕", "판타지소설", "저자: 톨킨");
 		Book book2 = new Book(2, "토지", "사회문학소설", "이효석");
 		Book book3 = new Book(3, "해리포터와 비밀의방", "판타지소설", "조앤롤링");
 
+		
 		/*
 		 * 회원이 책들 대여
 
@@ -31,14 +33,15 @@ public class BookLibraryMain {
 		bookMember[0] = bookMember1;// 회원객체 배열에 회원객체의 참조변수 대입 
 		bookMember[1] = bookMember2;
 		bookMember[2] = bookMember3;
-	
-		books[0] = book1; // 책객체 배열에 책객체의 참조변수 대입 
-		books[1] = book2;
-		books[2] = book3;
+		
+		// 책객체 배열에 책객체의 참조변수 대입  
+		book[0] = book1;  //박정수 반지의제왕
+		book[1] = book2;  //김정수 토지
+		book[2] = book3; // 이정수 해리포터와 비밀의방
 
-		//회원이 책 대여
-		for (int i = 0; i < bookMember.length-1; i++) { // 3번회원은 책 안빌리도록 하기위해 1을 뺐다.
-		    bookMember[i].setBooks(books);
+		//회원0과 1만 책대여함 3권 전부
+		for (int i = 0; i < bookMember.length-1; i++) {
+		    bookMember[i].setBook(book);
 		}
 
 		
@@ -49,7 +52,7 @@ public class BookLibraryMain {
 		
 		for (int i = 0; i < bookMember.length; i++) {
 			bookMember[i].print();
-
+			System.out.println();
 		}
 
 		

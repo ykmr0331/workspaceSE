@@ -1,33 +1,22 @@
-package com.itwill03.포함;
+package com.itwill03.포함.배열포함;
 
 
-	/*
-	 * - 캡슐화하세요
-	 * - 생성자를 정의하세요
-	 * 
-	 * <<속성>>
-	 *  번호
-		타이틀
-		쟝르
-	 * 
-	 * <<기능>>
-	 *   Dvd정보출력
-	 *   
-	 */
+
+
 public class Dvd {
 	/* <<속성>> 
 		번호
 		타이틀
 		쟝르*/
-	private int number;
-	private String title;
-	private String genre;
+	private int number; //Dvd번호
+	private String title;//Dvd제목
+	private String genre;//Dvd장르
 	
 	
 	
 	//생성자 정의
 	
-	public Dvd() {
+	public Dvd() { 
 
 	}
 	
@@ -66,7 +55,9 @@ public class Dvd {
 		this.genre = genre;
 	}
 	
-	
+	public void print() {
+		System.out.println(this.getNumber()+ "\t" + this.getTitle()+ "\t" +  this.getGenre());
+	}
 	
 	
 	

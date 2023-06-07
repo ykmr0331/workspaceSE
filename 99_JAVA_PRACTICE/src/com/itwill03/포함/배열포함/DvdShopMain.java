@@ -1,4 +1,5 @@
-package com.itwill03.포함;
+package com.itwill03.포함.배열포함;
+
 
 public class DvdShopMain {
 
@@ -41,9 +42,9 @@ public class DvdShopMain {
 		dvd[2] = dvd3;
 
 	
-		//회원이 DVD대여 //전부 3개 대여
-		for (int i = 0; i < DvdMember.length; i++) {
-		    DvdMember[i].setRentDvd(dvd[1],dvd[2],dvd[0] );
+		//회원1,2 2명만 3개 전부 대여하고, 회원3은 아예 대여안함
+		for (int i = 0; i < DvdMember.length-1; i++) {
+		    DvdMember[i].setRentDvd(dvd);// dvd는 배열객체의 참조변수다.
 		}
 		
 		

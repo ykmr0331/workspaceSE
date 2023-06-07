@@ -1,15 +1,16 @@
 
-public class AcademyMember {
+public class AcademyMember extends Object{
 
-	public int no;
-	public String name;
+	private int no;
+	private String name;
 
 //생성자
 	public AcademyMember() {
-
+		super();
 	}
+	
 	public AcademyMember(int no, String name) {
-
+		super();
 		this.no = no;
 		this.name = name;
 	}

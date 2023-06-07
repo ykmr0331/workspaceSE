@@ -1,5 +1,5 @@
 
-public class AcademyMemberMain {
+public class AcademyMemberOverridingMain {
 
 	public static void main(String[] args) {
 		/**************존재하지 않은 객체 생성********************
@@ -18,18 +18,17 @@ public class AcademyMemberMain {
 		AcademyStaff sf2 = new AcademyStaff(7, "PARK", "ACCOUNTING");
 		
 		System.out.println("------------Student----------");
-		/*******호출되면 안되는 메소드가 호출이된다....
+
+		//재정의된 메소드 호출
 		st1.print();
-		****/
-		st1.studentPrint();
-		st2.studentPrint();
-		st3.studentPrint();
+		st2.print();
+		st3.print();
 		System.out.println("------------Gangsa----------");
-		gs1.gangsaPrint();
-		gs2.gangsaPrint();
+		gs1.print();
+		gs2.print();
 		System.out.println("------------staff----------");
-		sf1.staffPrint();
-		sf2.staffPrint();
+		sf1.print();
+		sf2.print();
 	
 	
 	

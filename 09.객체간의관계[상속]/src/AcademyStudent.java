@@ -12,9 +12,10 @@ public class AcademyStudent extends AcademyMember {
 		this.name= name;// 상속받은거
 		this.ban = ban;
 	}
-	//print 메서드
+	
+	//studentPrint 메서드
 	public void studentPrint() {
-		this.print();
+		this.print();//부모의 print메소드 내용이 100줄이 된다고 생각해보면 이게 나음
 		/*
 		 * 	public void print() {
 		System.out.print(this.no +" \t" + this.name + "\t");

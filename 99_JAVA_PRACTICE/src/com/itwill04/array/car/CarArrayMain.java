@@ -137,7 +137,7 @@ public class CarArrayMain {
 		System.out.println("7.2389번차량 12시 출차");
 		
 		Car.headerPrint();
-		/*
+		
 		for (int i = 0; i < carArray.length; i++) {
 			if((carArray[i] != null) &&(carArray[i].getNo()).equals("2389")) {
 				carArray[i].setOutTime(12);
@@ -147,19 +147,22 @@ public class CarArrayMain {
 				break;
 			}
 		}
-		*/
 		
 		
+		/*  for (Car car : carArray) 구문에서 car 변수를 사용하여 배열 요소의 값을 수정하려고 한다면, 
+		 *  car 변수 대신 인덱스를 사용하여 배열 요소에 직접 접근해야 합니다
+		 
 		for ( Car car : carArray) {
 			if((car!= null) &&(car.getNo()).equals("2389")) {
 				car.setOutTime(12);
 				car.calculateFee();
 				car.print();
-				car =null;
+				car[i] =null;   //여기가 이렇게 돼야한다. 
+								//car=null; 이렇게 하면 car 변수의 값을 null로 변경하는 것이지, 실제 배열 요소에는 영향을 주지 않습니다
 				break;
 			}
 		}
- 		
+ 		*/
 
 		System.out.println();
 		/*
@@ -174,20 +177,16 @@ public class CarArrayMain {
 		System.out.println("99. 2389번차량 출차후전체 차량출력");
 		
 		Car.headerPrint();
-		/*
+		
 		for (int i = 0; i < carArray.length; i++) {
 			if(carArray[i] != null) {
 			carArray[i].print();
 			}
 		}
-		*/
 		
 		
-		for ( Car car : carArray) {
-			if(car != null) {
-				car.print();
-			}
-		}
+		
+
 		
 
 	}
