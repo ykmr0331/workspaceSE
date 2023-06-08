@@ -121,8 +121,63 @@ public class StudentArrayMain {
 			for (int i = 0; i < students.length; i++) {
 				students[i].print();
 			}
-
+			
+			
+			
+		/*
+		 * 7. 학생학점순으로 오름차순정렬
+		 */
+		System.out.println("7. 학생학점순으로 오름차순정렬");
+	
+		
+		/*
+		 * 8. 학생이름순으로 오름차순정렬
+		 */
+		System.out.println("8. 학생이름순으로 오름차순정렬");
+	
+		
+		System.out.println(">>>정렬전");
+		Student.headerPrint();
+		for (Student student : students) {
+			student.print();
+		}
+		
+		for (int i = 0; i < students.length; i++) {
+			for (int j = 0; j < students.length-1; j++) { //-1을 해야 j가 10이되는 일이 없다.
+/*           */	if(students[j].getName().compareTo(students[j+1].getName())> 0) { //이름 순서 비교하는거임
+					Student tempStudent = students[j];
+					students[j] = students[j+1];
+					students[j+1] = tempStudent;
+					tempStudent = students[j];
+					
+				} else if(students[j].getName().equals(students[j+1].getName())) {
+					System.out.println("---");
+				}
+			}
+		}
+		
+		
+		System.out.println(">>>정렬후");
+		Student.headerPrint();
+		for (Student student : students) {
+			student.print();
+		}
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		}
 
 	}
-

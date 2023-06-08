@@ -30,8 +30,9 @@ public class AcademyMemberMain {
 		System.out.println("------------staff----------");
 		sf1.staffPrint();
 		sf2.staffPrint();
-	
-	
+		System.out.println("dfdf");
+		System.out.println(st1.toString());
+		
 	
 	
 	}

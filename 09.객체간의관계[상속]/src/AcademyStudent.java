@@ -25,6 +25,15 @@ public class AcademyStudent extends AcademyMember {
 	}
 	
 	
+	
+	
+	@Override
+	public String toString() {
+		return "AcademyStudent [ban=" + ban + ", no=" + no + ", name=" + name + ", getBan()=" + getBan() + ", getNo()="
+				+ getNo() + ", getName()=" + getName() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
 	//getter setter
 	public String getBan() {
 		return ban;
