@@ -2,6 +2,7 @@
 public class EmployeePayPrintFinalMain {
 
 	public static void main(String[] args) {
+		
 		Employee[] emps= {
 			new SalaryEmployee(1,"KIM",45000000),	
 			new SalaryEmployee(2,"GIM",80000000),	
@@ -9,6 +10,7 @@ public class EmployeePayPrintFinalMain {
 			new HourlyEmployee(4,"HOM",100,30000),
 			new HourlyEmployee(5,"GON",100,10000)
 		};
+		
 		for(Employee emp:emps) {
 			emp.calculatePay();
 			System.out.println("---------"+emp.getName()
@@ -20,7 +22,7 @@ public class EmployeePayPrintFinalMain {
 			System.out.println();
 		}
 		
-		System.out.println("사원인센브율:"+Employee.INCENTIVE_RATE);
+		System.out.println("사원인센티브율:"+Employee.INCENTIVE_RATE);
 
 	}
 

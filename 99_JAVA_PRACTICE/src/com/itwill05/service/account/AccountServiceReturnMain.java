@@ -1,6 +1,5 @@
 package com.itwill05.service.account;
 
-import com.itwill05.service.account.Account.*;
 
 public class AccountServiceReturnMain {
 	public static void main(String[] args) {
@@ -87,7 +86,7 @@ public class AccountServiceReturnMain {
 		 */
 		
 		System.out.println("10.AccountServiceReturn객체야 계좌를 잔고순으로 오름차순정렬해줘");
-		System.out.println(accountServiceReturn.sort(3, 1));
+		accountServiceReturn.sort(3, 1);
 		accountServiceReturn.print();
 		
 		System.out.println();
@@ -95,7 +94,7 @@ public class AccountServiceReturnMain {
 		
 		
 		System.out.println("11.AccountServiceReturn객체야 계좌를 잔고순으로 내림차순정렬해줘");
-		System.out.println(accountServiceReturn.sort(3, 2));
+		accountServiceReturn.sort(3, 2);
 		accountServiceReturn.print();
 		System.out.println();
 		System.out.println();
@@ -104,44 +103,27 @@ public class AccountServiceReturnMain {
 		
 		
 		System.out.println("12.AccountServiceReturn야 계좌객체줄께 이름,잔고,이율 수정(update)해줘");
-;
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		Account accountExp = new Account(1111, "JUNG", 880000,7.0 );
+		System.out.println(accountServiceReturn.updateAccount(accountExp));
+		accountServiceReturn.print();
+		System.out.println();
+	
 		
 		System.out.println("13.AccountServiceReturn야 계좌데이타줄께 이름,잔고,이율 수정(update)해줘");
+		System.out.println(accountServiceReturn.updateAccount(2222, "KANG", 550000,3.0 ));
+		accountServiceReturn.print();
+		System.out.println();
+
 		
 		
-		System.out.println("14.AccountServiceReturn객체야 계좌번호줄께 계좌삭제한후 삭제한계좌객체반환해줘[OPTION]");
+		System.out.println("14.AccountServiceReturn객체야 계좌번호줄께 계좌삭제한후"
+				+ " 삭제한계좌객체 반환해줘[OPTION]");
+		System.out.println(accountServiceReturn.deleteByNo(1111));
+		accountServiceReturn.print();
+	
+	
+	
+	
 	}
 }

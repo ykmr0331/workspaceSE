@@ -12,11 +12,12 @@ public abstract class Employee {
 		this.no = no;
 		this.name = name;
 	}
+    
     /*
      * 급여계산
      *   - 실제구현작업 불가능
      *   - 자식클래스에서 반드시 재정의해야하는 메쏘드
-     *   - 재정의강제(규칙,specfication)
+     *   - 재정의강제(규칙,specification)
      */
 	public abstract void calculatePay();
 	/*
@@ -24,6 +25,7 @@ public abstract class Employee {
 	 *	 - 모든사원들의  인센티브계산방법 동일함
 	 *   - 재정의금지(회장님의 방침,변경금지) 
 	 */
+	
 	public final double calulateIncentive() {
 		double incentive=0.0;
 		if(this.pay>2000000) {

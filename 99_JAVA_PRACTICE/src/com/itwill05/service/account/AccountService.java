@@ -58,7 +58,7 @@ public class AccountService {
 		for (int i = 0; i < accounts.length; i++) {
 			bigAccount[i] = accounts[i];
 		}
-		bigAccount[9] = newAccount;
+		bigAccount[accounts.length] = newAccount;
 		
 		accounts = bigAccount;
 		
@@ -279,7 +279,7 @@ public class AccountService {
 	public void sortByBalanceDescending() {
 		
 		  for (int i = 0; i < accounts.length; i++) {//버블 for
-			for (int j = 0; j < accounts.length-1; j++) {
+			for (int j = 0; j < accounts.length-1-i; j++) {
 				if(accounts[j].getBalance() < accounts[j+1].getBalance()) {
 					//Account temp = new Account();
 					//temp = accounts[j+1];  //이거 순서 주의
@@ -303,10 +303,8 @@ public class AccountService {
 	public void updateAccount(Account updateAccount) {
 		for (int i = 0; i < accounts.length; i++) {
 			if(accounts[i].getNo() == updateAccount.getNo()) {
-				accounts[i].setOwner(updateAccount.getOwner());
-				accounts[i].setBalance(updateAccount.getBalance());
-				accounts[i].setIyul(updateAccount.getIyul());
-			}
+				accounts[i] = updateAccount; // 그냥 매개변수가 객체이니까 그대로 대입해버리면돼
+			} 
 		}
 		
 		
