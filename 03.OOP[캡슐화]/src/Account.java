@@ -6,28 +6,7 @@ public class Account {
 	private String owner;	//계좌주이름
 	private int balance;	//계좌잔고
 	private double iyul;    //계좌이율
-	
 
-	public Account() {
-	}
-	public Account(int no, String owner, int balance, double iyul) {
-		this.no = no;
-		this.owner = owner;
-		this.balance = balance;
-		this.iyul = iyul;
-	}
-	
-	/**
-	 * 인자값으로 초기화된 계좌객체생성
-	 * @param no 계좌번화
-	 * @param owner 계좌주
-	 * @param balance 계좌잔고
-	 * @param iyul  계좌이율
-	 */
-	
-	
-	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ메소드는 모두 접근제한자 public으로 설정
-	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 외부에서 멤버변수에 접근 못하기 때문에 메소드로 접근하기 위해
 	/*
 	 * 계좌데이타를 대입
 	 */
@@ -40,29 +19,21 @@ public class Account {
 	/*
 	 * 입금
 	 */
-	/**
-	 * 입금 
-	 * @param money 입금할 돈은 0보다 큰 수여야한다.
-	 */
 	public void deposit(int money) {
 		balance+=money;
 	}
-	/**
-	 * 출금
-	 * @param money출금할돈
-	 */
 	/*
 	 * 출금
 	 */
-	public void withDraw(int money) {
-		balance=balance-money;
+	public void withDraw(int money) throws Exception {
+		if(money > this.balance) {
+			throw new Exception("잔고가부족합니다.");
+		}else {
+			balance=balance-money;
+		}
 		//this.balance-=money;
 	}
-
 	/*
-	 * 계좌헤더출력
-	 */
-	/**
 	 * 계좌헤더출력
 	 */
 	public void headerPrint() {
@@ -78,15 +49,12 @@ public class Account {
 		System.out.printf("%d %s %8d %.1f\n",
 				this.no,this.owner,this.balance,this.iyul);
 	}
-	
-	
-	
 	/*
-	 *alt + shift + s 그 다음에 r누르면 get set 추가기능있음 
+	 << getter,setter 메쏘드생성단축키>>
+	  alt + s         --> r
+	  alt + shift + s --> r
 	 */
-	//<<getter, setter 메쏘드 생성단축키>>
-	
-	
+	//getter,setter
 	public int getNo() {
 		return no;
 	}
@@ -111,7 +79,8 @@ public class Account {
 	public void setIyul(double iyul) {
 		this.iyul = iyul;
 	}
-
+	
+	
 }
 
 
