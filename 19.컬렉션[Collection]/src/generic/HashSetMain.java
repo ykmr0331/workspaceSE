@@ -1,4 +1,4 @@
-package nogeneric;
+package generic;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ public class HashSetMain {
 		Car car3=new Car("3333", 3);
 		Car car4=new Car("4444", 4);
 		Car car5=new Car("5555", 5);
-		HashSet carSet=new HashSet();
+		HashSet<Car> carSet=new HashSet<Car>();
 		System.out.println("# set size:"+carSet.size());
 		System.out.println(carSet);
 		System.out.println("------------- 1.add --------------");
@@ -38,31 +38,28 @@ public class HashSetMain {
 		System.out.println(carSet);
 		System.out.println("--------------전체출력-----------------");
 		System.out.println("---------------toArray()---------------");
-		/*
+		
 		Object[] carObjectArray =carSet.toArray();
 		
-		 *toArray() 메서드는 HashSet의 모든 요소를 객체 배열로 변환하는 역할을 합니다.
- 		 *	호출한 HashSet의 요소들이 객체 배열에 복사되어 반환됩니다.
+		 //toArray() 메서드는 HashSet의 모든 요소를 객체 배열로 변환하는 역할을 합니다.
+ 		 //	호출한 HashSet의 요소들이 객체 배열에 복사되어 반환됩니다.
 		//toArray()는 Set인터페이스의 메소드임
 
- 		 
- 		 
-		
-		for (int i = 0; i < carObjectArray.length; i++) {
+		for (int i = 0; i < carObjectArray.length; i++) { // 이건 형변환 생략 못한다?
 			Car tempCar = (Car)carObjectArray[i]; 
 			tempCar.print();
 		}
-		 */
+		 
 		System.out.println("---------------enhanced for---------------");
-		for (Object carObject : carSet) {
-			Car tempCar=(Car)carObject;
-			tempCar.print();
+		for (Car car : carSet) { // 이미 제네릭타입에 Car타입으로 지정해서
+			car.print();
 		}
+		
 		/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%전체출력[iteration]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 		System.out.println("%%%%%%%%%%%%%%%%%%전체출력[iteration]%%%%%%%%%%%%%");
-		Iterator carIterator=carSet.iterator();
+		Iterator<Car> carIterator=carSet.iterator();
 		while(carIterator.hasNext()) {
-			Car tempCar=(Car)carIterator.next();
+			Car tempCar=carIterator.next();
 			tempCar.print();
 			//hasNext()는 Iterator 인터페이스의 메서드로, 다음 요소의 존재 여부를 확인하는 역할을 합니다
 			//next() 메서드는 Iterator 인터페이스의 메서드로, 다음 요소를 가져옵니다.
