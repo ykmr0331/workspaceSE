@@ -33,7 +33,7 @@ public class FileWriterReaderMain {
 		fw.write("두라인\n");
 		fw.write("세라인\n");
 		
-		//
+		//zz
 		/*
 		 * 채워지지 않은 버퍼에 있는 데이터를 출력스트림에 쓴다.
 		
