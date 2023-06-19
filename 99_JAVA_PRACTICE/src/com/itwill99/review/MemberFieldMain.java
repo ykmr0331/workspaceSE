@@ -26,6 +26,10 @@ public class MemberFieldMain {
 		System.out.println(memberField1.b);
 		System.out.println(memberField1.c);
 		System.out.println(memberField1.d);
+		System.out.println(memberField1.d);
+		System.out.println(memberField1.d);
+		System.out.println(memberField1.d);
+		System.out.println(memberField1.d);
 	} 
 
 }
