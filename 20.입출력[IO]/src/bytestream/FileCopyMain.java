@@ -1,5 +1,5 @@
 package bytestream;
-//다시  ㅇㅇㅇ
+//다시  ddfdfdf
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -32,6 +32,7 @@ public class FileCopyMain {
 		System.out.println("FileCopy:"+byteCount+" bytes copy!!");//파일 복사가 성공했음을 나타내는 메시지를 콘솔에 출력합니다  
 		long endTime = System.currentTimeMillis(); // 현재시간 startTime변수에 저장
 		long duration = endTime - startTime;// 걸린시간 알아보려고 하는거
+		System.out.println(duration+ "ms...");
 		System.out.println(duration+ "ms...");
 
 	}
