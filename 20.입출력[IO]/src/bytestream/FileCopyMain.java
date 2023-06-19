@@ -34,7 +34,7 @@ public class FileCopyMain {
 		long duration = endTime - startTime;// 걸린시간 알아보려고 하는거
 		System.out.println(duration+ "ms...");
 		System.out.println(duration+ "ms...");
-
+		System.out.println(duration+ "ms...");
 	}
 
 }
