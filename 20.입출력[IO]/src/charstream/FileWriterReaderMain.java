@@ -33,7 +33,7 @@ public class FileWriterReaderMain {
 		fw.write("두라인\n");
 		fw.write("세라인\n");
 		
-		
+		//
 		/*
 		 * 채워지지 않은 버퍼에 있는 데이터를 출력스트림에 쓴다.
 		
@@ -43,7 +43,7 @@ public class FileWriterReaderMain {
 		 */
 		
 		//BufferedInputStream과 BufferedOutputStream은 데이터의 입력과 출력을 버퍼링하여 성능을 향상시키는 데 사용됌
-
+//
 		fw.flush();
 		//fw.close();
 		System.out.println("FileWriter.write() --> fileWriter.txt");
