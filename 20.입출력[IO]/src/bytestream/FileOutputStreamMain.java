@@ -17,7 +17,7 @@ public class FileOutputStreamMain {
 // 2. 출력스트림(OutputStream)객체생성(FileOutputStream)
 // FileOutputStream 클래스는 파일에 데이터를 쓰는 데 사용되는 클래스입니다.
 // FileOutputStream 클래스의 생성자는 파일의 경로를 매개변수로 받습니다.
-		FileOutputStream fos = new FileOutputStream("fileOut.dat");
+		FileOutputStream fos = new FileOutputStream("fileOut.dat");	
 
 
 		

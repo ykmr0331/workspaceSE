@@ -1,70 +1,99 @@
 package charstream;
-
+import java.io.FileReader;
 import java.io.FileWriter;
 
 public class FileWriterReaderMain {
-/*
- * Writer와 Reader는 자바의 문자 기반 입출력 스트림을 다루기 위한 추상 클래스입니다.
- *  이들은 문자 데이터를 입출력하기 위한 다양한 메서드를 제공합니다.
- */
-	public static void main(String[] args) throws Exception{
-		/*
-		 * FileWriter 클래스의 생성자와 write() 메서드는 
-		 * IOException을 발생시킬 수 있습니다. 
-		 * 이러한 입출력 관련 예외는 파일이 존재하지 않거나, 
-		 * 파일에 쓰기 권한이 없는 등의 이유로 발생할 수 있습니다. 
-		 */
-		FileWriter fw = new FileWriter("fileWriter.txt");
-		
-		fw.write(44356);
-		fw.write('A');
-		fw.write('김');
-		
-		for (int i = 0; i < 65536; i++) {
-			fw.write(i);
-			if(i%100==0) {
-				fw.write('\n');
-			}
-		}
-		fw.write("\n");
-		fw.write("문자열을 맘대로 막써요");
-		fw.write("\n");
-		fw.write("한라인\n");
-		fw.write("두라인\n");
-		fw.write("세라인\n");
-		
-		//zz
-		/*
-		 * 채워지지 않은 버퍼에 있는 데이터를 출력스트림에 쓴다.
-		
-		 * flush() 메서드는 출력 스트림의 버퍼에 있는 데이터를 강제로 출력하는 역할을 합니다. 
-		 * 버퍼는 일시적으로 데이터를 모아두는 공간으로,
-		 *  데이터를 한 번에 출력함으로써 입출력 성능을 향상시킬 수 있습니다.
-		 */
-		
-		//BufferedInputStream과 BufferedOutputStream은 데이터의 입력과 출력을 버퍼링하여 성능을 향상시키는 데 사용됌
-//
-		fw.flush();
-		//fw.close();
-		System.out.println("FileWriter.write() --> fileWriter.txt");
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
-
+    public static void main(String[] args) throws Exception {
+        // FileWriter 객체를 사용하여 "fileWriter.txt" 파일을 생성하고 열기
+    	/*
+    	 * FileWriter는 Java에서 파일에 문자 데이터를 쓰기 위한 클래스입니다.
+			FileWriter는 Writer 클래스의 하위 클래스이며, 문자 단위로 데이터를 파일에 쓰는 기능을 제공합니다
+    	 */
+        FileWriter fw = new FileWriter("fileWriter.txt");
+        
+        // 파일에 다양한 데이터를 씁니다.
+        
+        // 정수 값 44356을 파일에 씁니다.  //Writer는 출력
+        fw.write(44356);
+        
+        // 문자 'A'를 파일에 씁니다.
+        fw.write('A');
+        
+        // 한글 문자 '김'을 파일에 씁니다.
+        fw.write('김');
+        
+        // 0부터 65535까지의 정수 값을 파일에 씁니다.
+        for (int i = 0; i < 65536; i++) {
+            fw.write(i);
+            
+            // 100번마다 줄바꿈 문자를 파일에 씁니다.
+            if (i % 100 == 0) {
+                fw.write('\n');
+            }
+        }
+        
+        // 줄바꿈 문자를 파일에 씁니다.
+        fw.write("\n");
+        
+        // 문자열을 파일에 씁니다.
+        fw.write("문자열을 맘대로 막써요 !!!!");
+        fw.write("\n");
+        
+        // 여러 줄로 구성된 문자열을 파일에 씁니다.
+        fw.write("한라인\n");
+        fw.write("두라인\n");
+        fw.write("세라인\n");
+        fw.write("네라인\n");
+        fw.write("다섯라인\n");
+        fw.write("여섯라인\n");
+        fw.write("일곱라인\n");
+        fw.write("여덟라인\n");
+        fw.write("아홉라인\n");
+        fw.write("열라인\n");
+        fw.write("열한라인\n");
+        fw.write("열두라인\n");
+        
+        /*
+         * 채워지지 않은 버퍼에 있는 데이터를 출력 스트림에 씁니다.
+         */
+        fw.flush();
+        
+        // 파일을 닫습니다.
+        fw.close();
+        
+        System.out.println("FileWriter.write() --> fileWriter.txt");
+        
+        // FileReader 객체를 사용하여 "fileWriter.txt" 파일을 엽니다.
+        FileReader fr = new FileReader("fileWriter.txt");
+        
+        int charCount = 0;
+        int readChar = fr.read();
+        charCount++;
+        System.out.println("1. readChar: " + (char)readChar);
+        
+        readChar = fr.read();
+        charCount++;
+        System.out.println("2. readChar: " + (char)readChar);
+        
+        readChar = fr.read();
+        charCount++;
+        System.out.println("3. readChar: " + (char)readChar);
+        
+        while (true) {
+            readChar = fr.read();
+            
+            // 파일 끝에 도달하면 반복문을 종료합니다.
+            if (readChar == -1) {
+                break;
+            }
+            
+            charCount++;
+            
+            // 읽은 문자를 출력합니다.
+            System.out.print((char)readChar);
+        }
+        
+        System.out.println();
+        System.out.println(charCount + " 문자 읽음");
+    }
 }
