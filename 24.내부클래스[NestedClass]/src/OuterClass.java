@@ -26,7 +26,7 @@ public class OuterClass {//외부클래스 시작
 		
 		public void inner_member_method() {//내부클래스의 멤버메소드
 			System.out.println("InnerClass.inner_member_method()");
-		};
+		}
 		
 	}
 	

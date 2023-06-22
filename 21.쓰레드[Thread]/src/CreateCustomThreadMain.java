@@ -11,7 +11,7 @@ public class CreateCustomThreadMain {
 	public static void main(String[] args) {
 		System.out.println("1.main thread start");
 		//싱글 코어 프로세서에서는 두 쓰레드가 동시에 실행되지 않습니다
-		createCustomThread cct = new createCustomThread(); 
+		CreateCustomThread cct = new CreateCustomThread(); 
 		cct.setName("사용자정의쓰레드");
 		System.out.println("2.main thread createCustomThread객체.start()메쏘드 호출 전 ");
 		
