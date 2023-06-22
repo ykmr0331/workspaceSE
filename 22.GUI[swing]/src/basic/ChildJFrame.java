@@ -23,7 +23,7 @@ public class ChildJFrame extends JFrame {
 	private JButton okBtn;
 	private JButton cancleBtn;
 	
-	public ChildJFrame() {
+	public ChildJFrame() { // 생성자임~~~
 		
 		contentPane=new JPanel();
 		contentPane.setBackground(Color.BLUE);
