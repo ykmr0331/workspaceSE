@@ -39,10 +39,10 @@ public class ChatJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ChatJFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ChatJFrame.class.getResource("/image/free-icon-user-5264565.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ChatJFrame.class.getResource("/image/w.png")));
 		setTitle("채팅");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 482);
+		setBounds(100, 100, 274, 396);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -51,21 +51,21 @@ public class ChatJFrame extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("채팅");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 18));
+		lblNewLabel.setFont(new Font("나눔고딕", Font.BOLD, 18));
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
-		JPanel southPanel = new JPanel();
-		contentPane.add(southPanel, BorderLayout.SOUTH);
+		JPanel soutPanel = new JPanel();
+		contentPane.add(soutPanel, BorderLayout.SOUTH);
 		
 		textField = new JTextField();
-		southPanel.add(textField);
-		textField.setColumns(20);
+		soutPanel.add(textField);
+		textField.setColumns(15);
 		
 		JButton btnNewButton = new JButton("전송");
-		southPanel.add(btnNewButton);
+		soutPanel.add(btnNewButton);
 		
 		JTextArea txtrn = new JTextArea();
-		txtrn.setText("경호: 이따 만나~~~~\\\r\n케이:알았어");
+		txtrn.setText("경호: 이따만나~~~~\r\n태희: 아라써~~");
 		txtrn.setEditable(false);
 		contentPane.add(txtrn, BorderLayout.CENTER);
 	}

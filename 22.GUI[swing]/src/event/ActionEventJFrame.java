@@ -1,99 +1,136 @@
 package event;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+/*
+1. 이벤트 소스 결정 :하나의 윈도우에는 여러 개의 컴포넌트가 존재할 수 있으므로
+					 실제로 이벤트가 발생되면 처리할 컴포넌트를 결정한다. 
+2. 이벤트 핸들러(리스너) 클래스작성 : 
+			이벤트를 실제적으로 처리할 수 있도록 
+            해당 이벤트를 처리할 이벤트 리스너 인터페이스를 
+            이용해서(구현) 이벤트 핸들러(리스너) 클래스를 작성한다. 
 
-// 이벤트 소스(JButton)에 이벤트 핸들러(NorthButtonActionEventHandler)를 등록합니다.
+3. 이벤트 소스객체와 이벤트 핸들러(리스너)객체 연결 :
+ 				이벤트 리스너(핸들러)가 작성이되면 리스너(핸들러)와 이벤트 소스와 연결을 하여 
+ 				이벤트 소스에서 실제적으로 이벤트가 발생이 되면 처리할수 있도록 
+				addXXListener()함수를 통해 연결을 시켜준다.  
+				XX부분은 해당 컴포넌트에 붙일 수 있는 리스너 이름을 의미한다.
+	 
+	  ex>버튼에서발생하는 ActionEvent를 처리할 Handler(ActionListener구현)객체생성
+	  
+	  예를 들어 버튼에 ActionEvent을 처리하기 위하여 
+	  버튼에다가 addActionListener를 붙이는 경우이다.
+	  ex> 버튼객체.addActionListener(ActionListener구현한핸들러객체);
+*/
 public class ActionEventJFrame extends JFrame {
 
+	JPanel contentPane;
+	private JButton northButton;
+	private JButton southButton;
+	private JButton westButton;
+
 	/**
-	JFrame은 Java Swing 프레임워크의 최상위 컨테이너 클래스입니다. 
-	JFrame은 GUI를 만들기 위한 기본 프레임워크를 제공하며, 다른 컴포넌트를 포함할 수 있습니다. 
-	JFrame은 크기, 위치, 타이틀, 콘텐츠 등을 설정할 수 있습니다.
-	JFrame은 Java Swing 프레임워크의 가장 기본적인 컴포넌트 중 하나이며, GUI를 만들기 위해 자주 사용됩니다.**/
-	
-	
-	//GUI(Graphical User Interface)는 그래픽 사용자 인터페이스를 의미합니다
-
-	/*
-	 * 컴포넌트는 GUI(Graphical User Interface)를 구성하는 기본 요소입니다.(GUI를 구현한거임)
-	 *  컴포넌트는 텍스트, 이미지, 버튼, 라벨 등 다양한 형태로 나타날 수 있습니다.
-	 *  컴포넌트는 사용자와 상호 작용하고, 이벤트를 처리할 수 있습니다. 
-	 *  컴포넌트는 Java Swing, HTML, CSS, JavaScript 등 다양한 프레임워크에서 사용됩니다.
-	 *	컴포넌트는 클래스임!!!!!!!!!!!!!!!!!!!!!!
+	 * Launch the application.
 	 */
-	
-    private JPanel contentPane;// JPanel(클래스): 컴포넌트를 포함하고 관리하는 데 사용되는 컨테이너 컴포넌트를 생성하는 데 사용됩니다.
-    private JButton northButton;// JButton(클래스): 사용자가 클릭할 수 있는 버튼 컴포넌트
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ActionEventJFrame frame = new ActionEventJFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-    	  
-    	// EventQueue.invokeLater()는 주 스레드가 아닌 별도의 스레드에서 코드를 실행합니다.
-    	  // 이렇게 하면 UI 이벤트를 처리하는 데 필요한 작업이 주 스레드에서 차단되지 않습니다.
-    	  EventQueue.invokeLater(new Runnable() { /* EventQueue.invokeLater(): 실행하면 새로운 쓰레드 생성, 
-    		  																   이렇게 하면 UI 이벤트를 처리하는 데 필요한 작업이 주 스레드에서 차단되지 않음*/
-    		  									//new Runnable(){} : Runnable인터페이스를 구현하는 익명 클래스를 생성합니다
-    	   
-    		  public void run() {
-    	      try {
-    	        // ActionEventJFrame 클래스의 인스턴스를 생성합니다.
-    	        ActionEventJFrame frame = new ActionEventJFrame();
+	/**
+	 * Create the frame.
+	 */
+	public ActionEventJFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 230, 287);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-    	        // frame의 setVisible() 메서드를 호출하여 프레임을 표시합니다.
-    	        frame.setVisible(true);
-    	      } catch (Exception e) {
-    	        // e.printStackTrace()는 예외를 로깅합니다.
-    	        e.printStackTrace();
-    	      }
-    	    }//run메소드끝, 생성된 쓰레드 종료
-    	  });//여기서 invokeLater()메서드 끝남
-    	  
-    	 /* 이 코드에서 invokeLater() 메서드는 Runnable 인터페이스를 구현하는 익명 클래스를 전달받아, 
-    	  * 별도의 스레드에서 해당 익명 클래스의 run() 메서드를 실행합니다. 
-    	  * run() 메서드는 ActionEventJFrame 클래스의 인스턴스를 생성하고 setVisible() 메서드를 호출하여 프레임을 표시합니다.
-    	  *  run() 메서드는 별도의 스레드에서 실행되므로 UI 이벤트를 처리하는 데 필요한 작업이 주 스레드에서 차단되지 않습니다*/
-    	}
-
-    /**
-     * Create the frame.
-     */
-    public ActionEventJFrame() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// 프레임을 닫을 때 프로그램을 종료합니다.
-        setBounds(100, 100, 230, 287);// 프레임을 100x100px 크기로 생성합니다.
-        contentPane = new JPanel();
-	        /*JPanel은 Swing 프레임워크에서 제공되는 컨테이너 컴포넌트(클래스)입니다. 
-	         * JPanel은 컴포넌트를 포함하고 관리하는 데 사용할 수 있습니다. 
-	         * JPanel은 다양한 레이아웃 매니저를 사용하여 컴포넌트를 배치할 수 있습니다.*/
-        
-  
-        // contentPane의 테두리를 5px로 설정합니다.
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-        // contentPane(JPanel타입)을 프레임의 콘텐츠 영역으로 설정합니다.
-        setContentPane(contentPane);
-       
-        // contentPane의 레이아웃을 BorderLayout으로 설정합니다.
-        contentPane.setLayout(new BorderLayout(0, 0));
-       
-        /// northButton이라는 새로운 JButton을 생성하고 "이벤트쏘스[NORTH]"라는 텍스트를 설정합니다.
-        northButton = new JButton("이벤트쏘스[NORTH]");
-        
-        // northButton을 contentPane에 BorderLayout.NORTH 위치에 추가합니다.
-        contentPane.add(northButton, BorderLayout.NORTH);
-
-        // 이벤트 소스(northButton)에 이벤트 핸들러(NorthButtonActionEventHandler)를 등록합니다.
-        northButton.addActionListener(
-					/*	addActionListener() 메서드는 컴포넌트에 액션 리스너를 추가하는 데 사용됩니다. 
-						액션 리스너는 액션 이벤트가 발생했을 때 호출되는 리스너입니다*/
-                new NorthButtonActionEventHandler());
-    }
-
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		northButton = new JButton("이벤트쏘스[NORTH]");
+		contentPane.add(northButton, BorderLayout.NORTH);
+		
+		southButton = new JButton("이벤트쏘스[SOUTH]");
+		contentPane.add(southButton, BorderLayout.SOUTH);
+		
+		westButton = new JButton("이벤트쏘스[WEST]");
+		contentPane.add(westButton, BorderLayout.WEST);
+		/****************이벤트쏘스에 이벤트핸들러객체를 등록***********************/
+		/*1.외부클래스*/
+		NorthButtonActionEventHandler handler1=
+				new NorthButtonActionEventHandler(this);
+		northButton.addActionListener(handler1);
+		/*2.멤버내부클래스*/
+		SouthButtonActionEventHandler handler2=
+				new SouthButtonActionEventHandler();
+		southButton.addActionListener(handler2);
+		/*2.anonymous(익명) local inner 클래스*/
+		ActionListener handler3 = new ActionListener() {
+			int buttonClickCount=0;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				westButton.setText("이벤트쏘스[SOUTH] "+ ++buttonClickCount);
+				/***********ActionEventJFrame의 멤버접근***********
+				 * 프레임의 타이틀변경
+				 * contentPane(프레임의 멤버필드)의 배경색변경
+				 * ???
+				 */
+				setTitle("button click count:"+buttonClickCount);
+				int r=(int)(Math.random()*256);
+				int g=(int)(Math.random()*256);
+				int b=(int)(Math.random()*256);
+				contentPane.setBackground(new Color(r,g,b));
+			}
+		};
+		westButton.addActionListener(handler3);
+		
+		/***************************************************************************/
+		 
+	}//생성자끝
+	/************************ member inner class *************************/
+	public class SouthButtonActionEventHandler implements ActionListener{
+		int buttonClickCount=0;
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			southButton.setText("이벤트쏘스[SOUTH] "+ ++buttonClickCount);
+			/***********ActionEventJFrame의 멤버접근***********
+			 * 프레임의 타이틀변경
+			 * contentPane(프레임의 멤버필드)의 배경색변경
+			 * ???
+			 */
+			setTitle("button click count:"+buttonClickCount);
+			int r=(int)(Math.random()*256);
+			int g=(int)(Math.random()*256);
+			int b=(int)(Math.random()*256);
+			contentPane.setBackground(new Color(r,g,b));
+		}
+		
+	}
 }
+
+
+
+
+
+
+
+
+
