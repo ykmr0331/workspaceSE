@@ -1,4 +1,4 @@
-package com.itwill05.service.collection.car;
+package com.itwill05.service.car;
 
 public class Car {
 	

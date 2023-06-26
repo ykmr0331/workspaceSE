@@ -1,4 +1,4 @@
-package com.itwill01.field;
+package com.itwill01.method;
 
 
 public class Calculator { //Calculator 클래스 생성

@@ -2,6 +2,11 @@ package server;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +26,7 @@ public class DayTimeServerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public DayTimeServerFrame() {
+		setAlwaysOnTop(true);
 		setTitle("DayTimeServer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 572, 297);
@@ -37,10 +43,16 @@ public class DayTimeServerFrame extends JFrame {
 		displayTA.setEditable(false);
 		scrollPane.setViewportView(displayTA);
 		/************* 서버쓰레드시작 ******************/
-		
+		DayTimeServerThread dayTimeServerThread=new DayTimeServerThread();
+		dayTimeServerThread.start();
 		/*********************************************/
 
 	}// 생성자끝
+	public void displayLog(String log) {
+		displayTA.append(log+"\n");
+		scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+		
+	}
 	/***************DayTimeServerThread start [inner class]******************/
 	/*
 	0.DayTimeServerThread:ServerSocket생성(8000)
@@ -51,8 +63,42 @@ public class DayTimeServerFrame extends JFrame {
 	5.DayTimeServerThread:클라이언트와연결된서버쪽 소켓닫기
 	*/
 	public class DayTimeServerThread extends Thread {
-		
+		 @Override
+		public void run() {
+			 try {
+				 displayLog("0.DayTimeSeverThread:ServerSocket생성(8000)");
+				 ServerSocket serverSocket=new ServerSocket(8000);
+				 while(true) {
+					 displayLog("1.DayTimeServerThread:클라이언트연결요청대기(쓰레드대기)");
+					 Socket socket=serverSocket.accept();
+					 displayLog("2.DayTimeServerThread:클라이언트와연결된서버쪽 소켓생성"+socket);
+					 String serverIP = socket.getLocalAddress().getHostAddress();
+					 PrintWriter out=
+							 new PrintWriter(
+									 new OutputStreamWriter(
+											 socket.getOutputStream()));
+					 displayLog("3.DayTimeServerThread:소켓으로부터 OutputStream생성");
+					 Date serverDate=new Date();
+					 String serverTimeStr = serverDate.toLocaleString();
+					 out.println("["+serverIP+"]"+serverTimeStr);
+					 out.flush();
+					 displayLog("4.DayTimeServerThread:소켓으로부터 생성된OutputStream에서버시간쓰기");
+					 socket.close();
+					 displayLog("5.DayTimeServerThread:클라이언트와연결된서버쪽 소켓닫기");
+					 displayLog("");
+					 
+				 }
+			 }catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		
 	}
 	/*************DayTimeServerThread end [inner class]****************/
 }
+
+
+
+
+
+

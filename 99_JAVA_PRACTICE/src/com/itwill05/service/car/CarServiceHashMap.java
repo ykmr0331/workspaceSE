@@ -1,4 +1,4 @@
-package com.itwill05.service.collection.car;
+package com.itwill05.service.car;
 
 import java.util.ArrayList;
 import java.util.HashMap;
