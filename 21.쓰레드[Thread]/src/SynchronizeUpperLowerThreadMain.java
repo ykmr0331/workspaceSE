@@ -8,6 +8,7 @@ public class SynchronizeUpperLowerThreadMain {
 		SynchronizeUpperThread upperThread1 = new SynchronizeUpperThread(sharedObject);
 		SynchronizeUpperThread upperThread2 = new SynchronizeUpperThread(sharedObject);
 
+		
 		// 소문자 출력을 위한 스레드 생성
 		// SynchronizeLowerThread lowerThread1 = new SynchronizeLowerThread(sharedObject);
 		// SynchronizeLowerThread lowerThread2 = new SynchronizeLowerThread(sharedObject);

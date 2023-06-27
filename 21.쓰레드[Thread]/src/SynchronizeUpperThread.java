@@ -6,8 +6,10 @@ public class SynchronizeUpperThread extends Thread {// 대문자 출력 쓰레�
 	   				//생성자의 매개변수에 알파벳출력메소드가진 객체 참조변수
    }
    
+
    @Override
 	public void run() { //쓰레드의 run메소드 오버라이딩
+	   sharedObject = new SynchronizeLowerUpperPrintSharedObject();
 	   sharedObject.printUpper();//알파벳 출력메소드를 가진 객체의 대문자출력메소드 
 	}
    

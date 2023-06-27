@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class ChatServerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ChatServerFrame() {
+		setAlwaysOnTop(true);
 		setTitle("ChatServer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 394);
@@ -71,11 +76,13 @@ public class ChatServerFrame extends JFrame {
 				 * 연결된모든클라이언트에게 공지사항전송
 				 */
 				String noticeStr=noticeTF.getText();
+				noticeTF.setText("");
 				if(noticeStr.equals("")) {
 					noticeTF.requestFocus();
 					return;
 				}
-				clientService.sendBroadcasting(noticeStr);
+				clientService.sendBroadcasting("[서버공지]"+noticeStr);
+				noticeTF.requestFocus();
 			}
 		});
 		panel.add(noticeB);
@@ -115,6 +122,7 @@ public class ChatServerFrame extends JFrame {
 					Socket socket=serverSocket.accept();
 					setLog("2.ChatServerThread:접속클라이언트:"+socket);
 					ServerClient client=new ServerClient(socket);
+					client.start();
 					setLog("3.ChatServerThread:ServerClientService 객체에 ServerClient객체추가");
 					clientService.addClient(client);
 				}
@@ -131,10 +139,52 @@ public class ChatServerFrame extends JFrame {
 	  - 클라이언트의 정보를 가지고있는 클래스
 	  - 클라이언트당 1개의객체가생성
 	 ********************************************/
-	public class ServerClient {
+	public class ServerClient extends Thread{
+		private String userId;
 		private Socket socket;//서버쪽소켓
-		public ServerClient(Socket socket) {
+		private PrintWriter out;
+		private BufferedReader in;
+		
+		public ServerClient(Socket socket) throws Exception {
 			this.socket=socket;
+			this.in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			this.out=new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			this.userId=socket.getInetAddress().getHostAddress()+"["+socket.getPort()+"]";
+		}
+		
+		public String getUserId() {
+			return userId;
+		}
+
+		public void setUserId(String userId) {
+			this.userId = userId;
+		}
+
+		/*
+		 * 클라이언트에 보내는 데이타를 읽기
+		 */
+		@Override
+		public void run() {
+			try {
+				while(true) {
+					setLog("가.ServerClient:xx 로부터 데이타를 읽기위해 쓰레드대기");
+					String chatStr = in.readLine();
+					setLog("나.ServerClient:xx 로부터읽은데이타:"+chatStr);
+					clientService.sendBroadcasting(chatStr);
+					setLog("다.ServerClient:연결된모든 클라이언에 읽은데이타 전송");
+				}
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+				//e.printStackTrace();
+				clientService.removeClient(this);
+			}
+		}
+		/*
+		 * 서버에서클라이언트로 데이타르 전송
+		 */
+		public void send(String message) {
+			out.println(message);
+			out.flush();
 		}
 	}
 	
@@ -157,8 +207,11 @@ public class ChatServerFrame extends JFrame {
 
 		public void addClient(ServerClient client) {
 			clientList.add(client);
-			setLog("A.ServerClientService:xxx 님입장");
+			sendBroadcasting(client.getUserId()+" 님 입장");
+			
+			setLog("A.ServerClientService:"+client.getUserId()+" 님입장");
 			setLog("B.ServerClientService:현재접속자수:"+clientList.size()+" 명");
+			
 		}
 		
 		/*
@@ -166,16 +219,20 @@ public class ChatServerFrame extends JFrame {
 		 */
 		public void removeClient(ServerClient client) {
 			clientList.remove(client);
-			setLog("A.ServerClientService:xxx 님퇴장");
+			sendBroadcasting(client.getUserId()+" 님 퇴장");
+			
+			setLog("A.ServerClientService:"+client.getUserId()+" 님퇴장");
 			setLog("B.ServerClientService:현재접속자수:"+clientList.size()+" 명");
+			
 		}
 		
 		/*
 		 *모든클라이언트에 메세지전송
 		 */
 		public void sendBroadcasting(String noticeStr) {
-			
-			
+			for (ServerClient client : clientList) {
+				client.send(noticeStr);
+			}
 		}
 	}
 }

@@ -6,7 +6,12 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.net.UnknownHostException;
 
 import javax.swing.AbstractListModel;
@@ -26,8 +31,9 @@ public class ChatClientFrame extends JFrame {
 	private JTextField chatTF;
 	private JScrollPane scrollPane;
 	private JTextArea displayTA;
-	/****** ClientClientThread객체 멤버필드로 선언 ******/
-	private ClientClientThread client;
+	/****** ClientClient[Thread]객체 멤버필드로 선언 ******/
+	private ClientClient client;
+	
 	private JScrollPane westScrollPane;
 	private JList chatList;
 
@@ -37,6 +43,7 @@ public class ChatClientFrame extends JFrame {
 				try {
 					ChatClientFrame frame = new ChatClientFrame();
 					frame.setVisible(true);
+					frame.chatTF.requestFocus();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,6 +58,7 @@ public class ChatClientFrame extends JFrame {
 	 * @throws UnknownHostException
 	 */
 	public ChatClientFrame() throws Exception {
+		setAlwaysOnTop(true);
 		setTitle("채팅클라이언트");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 523, 380);
@@ -76,6 +84,14 @@ public class ChatClientFrame extends JFrame {
 		chatTF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/***********************/
+				String chatStr = chatTF.getText();
+				chatTF.setText("");
+				if(chatStr.equals("")) {
+					chatTF.requestFocus();
+					return;
+				}
+				client.send("["+client.getUserId()+"]"+chatStr);
+				chatTF.requestFocus();
 				/***********************/
 			}
 		});
@@ -87,7 +103,14 @@ public class ChatClientFrame extends JFrame {
 		sendB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/***********************/
-
+				String chatStr = chatTF.getText();
+				chatTF.setText("");
+				if(chatStr.equals("")) {
+					chatTF.requestFocus();
+					return;
+				}
+				client.send("["+client.getUserId()+"]"+chatStr);
+				chatTF.requestFocus();
 				/***********************/
 			}
 		});
@@ -110,7 +133,11 @@ public class ChatClientFrame extends JFrame {
 			}
 		});
 		westScrollPane.setViewportView(chatList);
-		/******** ClientClientThread객체생성 *******/
+		/******** ClientClient객체생성(Thread) *******/
+		Socket socket=new Socket("192.168.15.31",8888);
+		client=new ClientClient(socket);
+		client.start();
+		setTitle(client.getUserId()+" 님 안녕하세요");
 
 	}// 생성자
 
@@ -126,22 +153,46 @@ public class ChatClientFrame extends JFrame {
 	  - 클라이언트의 정보를가지고있는 클래스 
 	  - 클라이언트당 1개의객체가생성
 	****************************************************************/
-	public class ClientClientThread extends Thread {
+	public class ClientClient extends Thread {
+		private String userId;
+		private Socket socket;//클라이언트쪽소켓
+		private PrintWriter out;
+		private BufferedReader in;
+		
+		public ClientClient(Socket socket)  throws Exception{
+			this.socket=socket;
+			this.in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			this.out=new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			this.userId = socket.getLocalAddress().getHostAddress()+"["+socket.getLocalPort()+"]";
+		}
+		
+		public String getUserId() {
+			return userId;
+		}
+
+		public void setUserId(String userId) {
+			this.userId = userId;
+		}
 
 		/*
 		 * 클라이언트에서 서버로 데이타전송
 		 */
-
+		public void send(String msg) {
+			out.println(msg);
+			out.flush();
+		}
 		/*
 		 * 서버에서 보내는 데이타를 읽기
 		 */
 		@Override
 		public void run() {
 			try {
-				/*
-				 * System.out.println("A.ClientClientThread:서버로부터 오는 데이타를 읽기위해 쓰레드 무한대기");
-				 * System.out.println("B.ClientClientThread:서버로부터 읽은 데이타를 클라이언트 채팅창에 보여준다.");
-				 */
+				while(true) {
+				  System.out.println("A.ClientClient:서버로부터 오는 데이타를 읽기위해 쓰레드 무한대기");
+				  String chatStr = in.readLine();
+				  System.out.println("B.ClientClient:서버로부터 읽은 데이타를 클라이언트 채팅창에 보여준다.");
+				  displayMessage(chatStr);
+				}
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
