@@ -20,7 +20,7 @@ public class AddressTableUpdateByPrimarykeyMain {
 		String password="tiger";
 		/************************************************/
 		String updateSql=
-				"update address set name='김변경' ,phone='888-8888',address='서울시 강서구' where no = 1";
+				"update address set name='김변경' ,phone='888-8888',address='서울시 강서구' where no = 3";
 		/*
 		 1.Driver class loading
 	     2.Connection 객체생성

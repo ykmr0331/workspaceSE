@@ -26,7 +26,8 @@ public class JDBCFlowMain {
 		 *   A.Driver Class객체생성
 		 *   B.DriverManager에 드라이버객체등록
 		 */
-		Class.forName(driverClass); //Class.forName()은 클래스를 동적으로 로드(메모리를 읽는것)하기 위한 자바 리플렉션 API의 메서드
+		Class.forName(driverClass); 
+		//Class.forName()은 클래스를 동적으로 로드(메모리를 읽는것)하기 위한 자바 리플렉션 API의 메서드
 		System.out.println("1.Driver class loading");
 		
 		/*
@@ -58,20 +59,22 @@ public class JDBCFlowMain {
 		/*
 		 * 4.SQL문 전송(select)
 		 * 5.ResultSet객체얻기(select)
-		 	
-		 	----------------------------
+		 	 <<ResultSet객체>>
+		 	 ----------------------------
 		 	 DEPTNO  DNAME  	 LOC      
-		 	----------------------------
+		 	 ----------------------------
+  (cursor) ->BEFORE FIRST 영역	
 		 	 10		ACCOUNTING	NEW YORK
 			 20		RESEARCH	DALLAS
 			 30		SALES		CHICAGO
 			 40		OPERATIONS	BOSTON
-		 * 
-		 */
+			 AFTER LAST 영역	
+		 
 		ResultSet rs = stmt.executeQuery(selectSql);
 								/*ResultSet은 JDBC(Java Database Connectivity)에서 쿼리 결과 집합을 나타내는 인터페이스*/
 		
 								/*stmt라는 Statement 객체를 사용하여 selectSql 변수에 저장된 SQL 쿼리를 실행하고, 그 결과로 ResultSet 객체를 반환*/		
+		ResultSet rs = stmt.executeQuery(selectSql);
 		System.out.println("4,5. ResultSet객체얻기 select문 실행결과):" + rs);
 		System.out.println("----------------------------");
 		System.out.println(" DEPTNO  DNAME  	 LOC    ");
@@ -88,6 +91,7 @@ public class JDBCFlowMain {
 			
 			System.out.println(deptno+"\t"+dname+"\t"+loc);
 		}
+		System.out.println("----------------------------");
 		/*
 		 * 6.연결객체(resource해지) close
 		 */

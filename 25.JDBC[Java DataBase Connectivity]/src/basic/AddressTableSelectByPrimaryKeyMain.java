@@ -1,11 +1,11 @@
-
 package basic;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class AddressTableSelectAllMain {
+public class AddressTableSelectByPrimaryKeyMain {
 
 	public static void main(String[] args) throws Exception{
 
@@ -60,7 +60,7 @@ public class AddressTableSelectAllMain {
 		ADDRESS          VARCHAR2(60) 
 		 */
 		if(rs.next()) {
-			do{
+			
 				/* --------------------------------
 				 * DB타입 		| 자바타입
 				 * --------------------------------
@@ -74,7 +74,7 @@ public class AddressTableSelectAllMain {
 				String phone=rs.getString("phone");
 				String address=rs.getString("address");
 				System.out.println(no+" "+name+" "+phone+" "+address);
-			}while(rs.next());
+
 		}else {
 			System.out.println(">> 주소록 친구없다~~~");
 		}

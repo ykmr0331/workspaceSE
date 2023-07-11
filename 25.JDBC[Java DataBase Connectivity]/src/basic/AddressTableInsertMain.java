@@ -12,9 +12,8 @@ public class AddressTableInsertMain {
 		String user="scott";
 		String password="tiger";
 		
-		String insertSql = 
-				"insert into address values(address_no_seq.nextval, '김경호',123-3456,'경기도포천시')";
-		
+		String insertSql = "insert into address values(address_no_seq.nextval,'김경호','123-3456','경기도 포천시')";
+
 		/*
 		 1.Driver class loading
 	     2.Connection 객체생성
