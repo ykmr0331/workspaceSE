@@ -31,6 +31,7 @@ public class Address {
 	public Address() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	/*
 	 * alt+shift+s  -> o  : 생성자
 	 */
