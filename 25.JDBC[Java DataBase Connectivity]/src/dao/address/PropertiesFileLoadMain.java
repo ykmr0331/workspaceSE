@@ -12,8 +12,9 @@ public class PropertiesFileLoadMain {
 	 */
 		
 		Properties properties = new Properties(); 
-		/*Properties는 key와 value가 모두 String 타입인 맵 형태의 객체*/
-		
+		/*Properties는 key와 value가 모두 String 타입인 맵 형태의 객체,
+		               Hashtable을 상속한 클래스  
+					   주로 설정 정보를 관리하고 속성을 로드하고 저장하는 데 사용됩니다.*/
 		/*
 		 <<절대경로>>
 		FileInputStream fis = new FileInputStream("C:\\2023_05_java_developer\\workspaceSE\\25.JDBC[Java DataBase Connectivity]\\src\\application.properties");

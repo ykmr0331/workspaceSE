@@ -23,6 +23,7 @@ public class AddressDao {
 	
 	public int insert(Address insertAddress) throws Exception{
 		String insertSql="insert into address values(address_no_seq.nextval,?,?,?)";
+		//?,?,?: 두 번째, 세 번째, 네 번째 열에 해당하는 값을 나타내는 매개변수 위치 표시자입니다. ?는 나중에 실행 시점에 실제 값으로 대체됩니다.
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(insertSql);
 		pstmt.setString(1,insertAddress.getName());

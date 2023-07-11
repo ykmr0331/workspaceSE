@@ -15,15 +15,17 @@ create sequence board_no_seq
                  start with 1
                  nocycle
                  nocache;
-                 
-                 
 --insert
 insert into board(board_no,board_title,board_content)
               values(board_no_seq.nextval,'제목','내용입니다');
+              
+              
+              
+              
 --pk update
 update board set board_title='변경타이틀',board_content='변경content' where board_no=1;
 --pk delete
-delete board where board_no=1;
+delete board where board_no=4;
 --pk select
 select * from board where board_no=2;
 --all select
