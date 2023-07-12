@@ -1,4 +1,7 @@
 package dao.guest;
+
+import java.sql.Date;
+
 /*
 VO(Value Object),DTO(Data Transfer Object)
 	- guest 테이블 1개 row의 데이타의 값을 가지는객체
@@ -18,6 +21,95 @@ GUEST_CONTENT           VARCHAR2(4000)
 */
 
 public class Guest {
+	private int guestNo;
+	private String guestName;
+	private Date date;
+	private String guestEmail;
+	private String guestHomepage;
+	private String guestTitle;
+	private String guestContent;
+	
+	public Guest() {
+
+	}
+
+	public Guest(int guestNo, String guestName, Date date, String guestEmail, String guestHomepage, String guestTitle,
+			String guestContent) {
+		super();
+		this.guestNo = guestNo;
+		this.guestName = guestName;
+		this.date = date;
+		this.guestEmail = guestEmail;
+		this.guestHomepage = guestHomepage;
+		this.guestTitle = guestTitle;
+		this.guestContent = guestContent;
+	}
+
+	public int getGuestNo() {
+		return guestNo;
+	}
+
+	public void setGuestNo(int guestNo) {
+		this.guestNo = guestNo;
+	}
+
+	public String getGuestName() {
+		return guestName;
+	}
+
+	public void setGuestName(String guestName) {
+		this.guestName = guestName;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getGuestEmail() {
+		return guestEmail;
+	}
+
+	public void setGuestEmail(String guestEmail) {
+		this.guestEmail = guestEmail;
+	}
+
+	public String getGuestHomepage() {
+		return guestHomepage;
+	}
+
+	public void setGuestHomepage(String guestHomepage) {
+		this.guestHomepage = guestHomepage;
+	}
+
+	public String getGuestTitle() {
+		return guestTitle;
+	}
+
+	public void setGuestTitle(String guestTitle) {
+		this.guestTitle = guestTitle;
+	}
+
+	public String getGuestContent() {
+		return guestContent;
+	}
+
+	public void setGuestContent(String guestContent) {
+		this.guestContent = guestContent;
+	}
+
+	@Override
+	public String toString() {
+		return "Guest [guestNo=" + guestNo + ", guestName=" + guestName + ", date=" + date + ", guestEmail="
+				+ guestEmail + ", guestHomepage=" + guestHomepage + ", guestTitle=" + guestTitle + ", guestContent="
+				+ guestContent + "]";
+	}
+	
+	
+	
 	
 	
 	
