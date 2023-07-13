@@ -1,4 +1,5 @@
 package com.itwill05.service.array.academy;
+
 public class AcademyStudent extends AcademyMember {
 	public String ban; //학생 속한 반
 

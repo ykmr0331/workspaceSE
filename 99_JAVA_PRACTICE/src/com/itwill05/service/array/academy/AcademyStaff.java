@@ -1,4 +1,5 @@
 package com.itwill05.service.array.academy;
+
 public class AcademyStaff extends AcademyMember{
 
 	public String depart; // 부서

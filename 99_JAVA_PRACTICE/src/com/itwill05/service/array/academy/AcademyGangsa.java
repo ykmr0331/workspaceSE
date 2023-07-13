@@ -1,4 +1,5 @@
 package com.itwill05.service.array.academy;
+
 public class AcademyGangsa extends AcademyMember{
 
 	public String subject;//과목
