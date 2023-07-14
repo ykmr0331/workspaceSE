@@ -56,7 +56,7 @@ public class MemberDao {
 		int deleteRowCount=pstmt.executeUpdate();
 		return deleteRowCount;
 	}
-	public Member findByPrimaryKey(String member_id)throws Exception {
+	public Member findByMemberId(String member_id)throws Exception {
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(MemberSQL.MEMBER_SELECT_BY_ID);
 		pstmt.setString(1,member_id);
@@ -94,20 +94,3 @@ public class MemberDao {
 		return memberList;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -20,7 +20,7 @@ public class DataSource {
 	public DataSource() throws Exception{
 		/*****jdbc.properties 파일을 읽어서 데이타베이스접속정보를 필드에저장 *****/
 		Properties properties=new Properties();
-		InputStream propertiesInput = DataSource.class.getResourceAsStream("/jdbc.properties");
+		InputStream propertiesInput = DataSource.class.getResourceAsStream("/com/itwill/common/jdbc.properties");
 		properties.load(propertiesInput);
 		this.driverClass=properties.getProperty("driverClass");
 		this.url=properties.getProperty("url");

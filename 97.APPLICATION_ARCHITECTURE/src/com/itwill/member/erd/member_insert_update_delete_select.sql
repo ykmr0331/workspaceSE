@@ -21,9 +21,9 @@ update member set
 where member_id='aaaa';
 
 --delete pk
-delete from member where member_id='aaaa';
+delete from member where member_id='xxxx';
 --select pk
-select member_id,member_password,member_name,member_address,member_age,member_married,member_regdate from member where member_id='bbbb';
+select member_id,member_password,member_name,member_address,member_age,member_married,member_regdate from member where member_id='aaaa';
 --select All
 select member_id,member_password,member_name,member_address,member_age,member_married,member_regdate from member;
 commit;

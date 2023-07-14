@@ -9,90 +9,68 @@ public class MemberService {
 	}
 	/*
 	 * 회원가입
-	 *  - 아이디가 중복된경우에는 메세지를띄운다.
 	 */
-	public boolean addMember(Member newMember) throws Exception {
+	public boolean addMember(Member newMember) throws Exception{
 		boolean isSuccess=false;
 		/*
-		 * 아이디존재여부체크
-		 * 	- 존재하면 메세지
-		 *  - 존재안하면 가입
+		 * 아이디존재여부
 		 */
-		if(memberDao.findByPrimaryKey(newMember.getMemberId())==null) {
-			int rowCount=memberDao.insert(newMember);
-			isSuccess=true;
-		}else {
-			isSuccess=false;
-		}
-		return isSuccess;
+	    Member findMember= memberDao.findByMemberId(newMember.getMemberId());
+	    if(findMember==null) {
+	    	//아이디중복안됨
+	    	int rowCount=memberDao.insert(newMember);
+	    	isSuccess = true;
+	    }else {
+	    	//아이디중복
+	    	isSuccess=false;
+	    }
+	    return isSuccess;
 	}
-	
 	
 	/*
 	 * 회원로그인
 	 */
-	public int login(String id,String password) throws Exception{
-		/*
-		 * 0:성공
-		 * 1:아이디존재안함
-		 * 2:패쓰워드불일치
-		 */
-		int loginResult = -9999;
-		Member findMember=memberDao.findByPrimaryKey(id);
-		if(findMember==null) {
-			//아이디존재안함
-			loginResult=1;
-		}else {
-			//아이디존재함
-			if(password.equals(findMember.getMemberPassword())) {
-				//패쓰워드일치
-				loginResult=0;
-			}else {
-				//패쓰워드불일치
-				loginResult=2;
-			}
+	public Member login(String memberId,String memberPassword)throws Exception{
+		Member findMember = memberDao.findByMemberId(memberId);
+		if(findMember!=null && findMember.getMemberPassword().equals(memberPassword)) {
+			//로그인성공(아이디존재 & 패쓰워드일치)
+			return findMember;
 		}
-		return loginResult;
+		return null;
 	}
+	
+	
 	/*
 	 * 회원아이디중복체크
 	 */
-	public  boolean isDuplicateId(String m_id)throws Exception {
-		Member findMember=memberDao.findByPrimaryKey(m_id);
-		if(findMember==null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
 	
 	/*
 	 * 회원상세보기
 	 */
-	public Member memberDetail(String m_id) throws Exception {
-		return memberDao.findByPrimaryKey(m_id);
+	public Member memberDetail(String memberId) throws Exception{
+		return memberDao.findByMemberId(memberId);
 	}
 	/*
 	 * 회원수정
 	 */
-	public int memberUpdate(Member member) throws Exception{
+	public int memberUpdate(Member member)throws Exception{
 		return memberDao.update(member);
 	}
 	/*
 	 * 회원탈퇴
 	 */
-	public int memberDelete(String m_id) throws Exception{
-		return memberDao.delete(m_id);
+	public int memberDelete(String memberId) throws Exception{
+		return memberDao.delete(memberId);
 	}
 	/*
 	 * << admin >> 
 	 * 회원전체리스트
 	 */
-	public List<Member> memberList() throws Exception{
+	public List<Member> memberList()throws Exception{
 		return memberDao.findAll();
 	}
 	
-	/* admin
+	/* << admin >> 
 	 * 회원전체검색
 	 * 회원이름으로검색
 	 * 회원주소로검색

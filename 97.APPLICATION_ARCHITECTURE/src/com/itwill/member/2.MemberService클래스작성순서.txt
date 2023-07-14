@@ -1,4 +1,4 @@
-######## MemberService(Manager) 클래스작성 ############
+ ######## MemberService(Manager) 클래스작성 ############
 1.클래스생성
   	MemberService.java
 
